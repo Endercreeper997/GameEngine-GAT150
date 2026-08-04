@@ -4,6 +4,7 @@
 #include "Random.h"
 #include "MathUtils.h"
 #include "Text.h"
+#include "Texture.h"
 
 //Systems
 #include "Renderer.h"
@@ -16,6 +17,7 @@
 #include "fmod.hpp"
 #include "File.h"
 #include "Audio.h"
+
 
 
 #define ENGINE			Engine::Get()

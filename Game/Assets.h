@@ -1,13 +1,14 @@
 #pragma once
 #include "Model.h"
+#include <memory>
 
 namespace Assets
 {
-	extern nu::Model playerModel;
-	extern nu::Model enemyModel;
-	extern nu::Model enemyModel2;
-	extern nu::Model bulletModel;
-	extern nu::Model pickupModel;
+	extern std::shared_ptr<nu::Model> playerModel;
+	extern std::shared_ptr<nu::Model> enemyModel;
+	extern std::shared_ptr<nu::Model> enemyModel2;
+	extern std::shared_ptr<nu::Model> bulletModel;
+	extern std::shared_ptr<nu::Model> pickupModel;
 
 
 }

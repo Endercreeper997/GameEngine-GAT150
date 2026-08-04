@@ -21,7 +21,7 @@ namespace Assets
             },
             Color{ 0.0f, 0.0f, 1.0f } 
     };
-    Model playerModel{ std::vector<Mesh>{ playerMesh } };
+    std::shared_ptr<Model> playerModel = std::make_shared<Model>( std::vector<Mesh>{ playerMesh } );
 
     Mesh bulletMesh{
     {
@@ -32,7 +32,7 @@ namespace Assets
     },
     Color{ 1.0f, 0.0f, 0.0f }
     };
-    Model bulletModel{ std::vector<Mesh>{ bulletMesh } };
+    std::shared_ptr<Model> bulletModel = std::make_shared<Model>(std::vector<Mesh>{ bulletMesh });
 
     Mesh enemyMesh{
     {
@@ -43,7 +43,7 @@ namespace Assets
     },
     Color{ 0.0f, 1.0f, 0.0f }
     };
-    Model enemyModel{ std::vector<Mesh>{ enemyMesh } };
+    std::shared_ptr<Model> enemyModel = std::make_shared<Model>(std::vector<Mesh>{ enemyMesh });
 
     Mesh enemyMesh2{
     {
@@ -54,7 +54,7 @@ namespace Assets
     },
     Color{ 1.0f, 1.0f, 0.0f }
     };
-    Model enemyModel2{ std::vector<Mesh>{ enemyMesh2 } };
+    std::shared_ptr<Model> enemyModel2 = std::make_shared<Model>(std::vector<Mesh>{ enemyMesh2 });
 
 
     Mesh pickupMesh{
@@ -74,6 +74,6 @@ namespace Assets
                 },
                 Color{ nu::RandomFloat(1.0f), nu::RandomFloat(1.0f), nu::RandomFloat(1.0f)}
     };
-    Model pickupModel{ std::vector<Mesh>{ pickupMesh } };
+    std::shared_ptr<Model> pickupModel = std::make_shared<Model>(std::vector<Mesh>{ pickupMesh });
 
 }
