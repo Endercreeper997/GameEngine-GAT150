@@ -1,13 +1,29 @@
 #pragma once
 
 #include <stdlib.h>
+#include <random>
 
 namespace nu
 {
 
-	inline int RandomInt() {
+	inline std::mt19937& Generator()
+	{
+		static std::random_device randomDevice;
+		static std::mt19937 generator(randomDevice());
+		
+		return generator;
+	}
 
-		return rand();
+
+	inline void SeedRandom(unsigned int seed)
+	{
+		Generator().seed(seed);
+	}
+
+	inline int RandomInt() 
+	{
+		static std::uniform_int_distribution<> dist;
+		return dist(Generator());
 	}
 
 	/// <summary>
@@ -17,7 +33,8 @@ namespace nu
 	/// <returns>Random number beteween 0 and max</returns>
 	inline int RandomInt(int max) {
 
-		return rand() % max;
+		std::uniform_int_distribution<> dist(0, max - 1);
+		return dist(Generator());
 	}
 
 	/// <summary>
@@ -28,26 +45,32 @@ namespace nu
 	/// <returns>Random number between min and max</returns>
 	inline int RandomInt(int min, int max) {
 
-		return min + RandomInt(max - min) + 1;
+		std::uniform_int_distribution<> dist(min, max);
+		return dist(Generator());
 	}
 
-	inline float RandomFloat() {
-
-		// rand() = 0 <- RAND_MAX
-		return rand() / (float)RAND_MAX;
+	inline float RandomFloat()
+	{
+		static std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+		return dist(Generator());
 	}
 
-	inline float RandomFloat(float max) {
-
-		// 0 <-> 1 * max
-		return RandomFloat() * max;
+	inline float RandomFloat(float max) 
+	{
+		static std::uniform_real_distribution<float> dist(0.0f, max);
+		return dist(Generator());
 	}
 
-	inline float RandomFloat(float min, float max) {
+	inline float RandomFloat(float min, float max) 
+	{
+		static std::uniform_real_distribution<float> dist(min, max);
+		return dist(Generator());
+	}
 
-		// min + (0 <-> 1) * (max - min)
-		// ()
-		return min +  RandomFloat() * (max - min);
+	inline bool RandomBool()
+	{
+		std::bernoulli_distribution dist(0.5f);
+		return dist(Generator());
 	}
 
 
