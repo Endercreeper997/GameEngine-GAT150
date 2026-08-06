@@ -24,13 +24,15 @@ namespace nu
 		void DrawRect(float x, float y, float w, float h) const;
 
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
+		void DrawTexture(const class Texture& texture, float x, float y);
+		void DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool flipH = false);
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
 
 		friend class Text;
 		friend class Texture;
-		void DrawTexture(class Texture* texture, float x, float y);
+		
 
 	private:
 		SDL_Window* m_window = nullptr;

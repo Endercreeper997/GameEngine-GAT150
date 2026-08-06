@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.h"
 #include "Text.h"
+#include "ResourceManager.h"
 
 class SpaceGame : public nu::Game
 {
@@ -50,16 +51,16 @@ private:
 	int m_enemiesSpawned = 0;
 	
 	
-
 	GameState m_gameState = GameState::Title;
 
-	class nu::Font* m_titleFont{ nullptr };
+	nu::res_t<nu::Font> m_titleFont;
+	nu::res_t<nu::Font> m_gameFont;
+
 	class nu::Text* m_titleText{ nullptr };
 
 	class nu::Font* m_mediumFont{ nullptr };
 	class nu::Text* m_gameOverText{ nullptr };
 
-	class nu::Font* m_gameFont{ nullptr };
 
 	class nu::Text* m_scoreText{ nullptr };
 	class nu::Text* m_livesText{ nullptr };

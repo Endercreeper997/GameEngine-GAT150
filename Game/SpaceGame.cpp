@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Enemy.h"
 
+#include <memory>
+
 
 using namespace nu;
 
@@ -15,19 +17,14 @@ bool SpaceGame::Initialize()
 	m_scene = new Scene();
 	m_scene->SetGame(this);
 
-	
-	m_titleFont = new Font();
-	m_titleFont->Load("fonts/BreatheFireIii-PKLOB.ttf", 65);
-
-	m_titleText = new Text(m_titleFont);
+	m_titleText = new Text(Resources().GetWithID<Font>("Game Font", "fonts/BreatheFireIii-PKLOB.ttf", 64));
 	m_titleText->Create(Engine::Get().GetRenderer(), "Super Space Game 2", Color{ 1, 0, 1 });
 
-	m_gameFont = new Font();
-	m_gameFont->Load("fonts/BreatheFireIii-PKLOB.ttf", 32);
+	//m_gameFont = std::make_shared<Font>();
+	//m_gameFont->Load("fonts/BreatheFireIii-PKLOB.ttf", 32);
 
-	m_scoreText = new Text(m_gameFont);
-
-	m_livesText = new Text(m_gameFont);
+	m_scoreText = new Text(Resources().Get<Font>("fonts/BreatheFireIii-PKLOB.ttf", 64));
+	m_livesText = new Text(Resources().Get<Font>("fonts/BreatheFireIii-PKLOB.ttf", 64));
 	
 	Engine::Get().GetAudio().AddSound("test", "test.wav");
 	Engine::Get().GetAudio().AddSound("duck", "duck-toy.mp3");

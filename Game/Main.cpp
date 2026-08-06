@@ -149,7 +149,7 @@ int main()
     //renderer test
     // create texture, using shared_ptr so texture can be shared
     std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("textures/The_Rock_Guy.png", Engine::Get().GetRenderer());
+    //texture->Load("textures/Player.png", Engine::Get().GetRenderer());
 
    
 
@@ -195,7 +195,7 @@ int main()
         Engine::Get().GetRenderer().Clear();
 
         //draw texture
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/Player.png", Engine::Get().GetRenderer()), 30, 30, 0.0f, 1.0f);
 
         game.Draw(Engine::Get().GetRenderer());
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
