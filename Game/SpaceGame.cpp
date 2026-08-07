@@ -101,7 +101,7 @@ void SpaceGame::Update(float dt)
 }
 void SpaceGame::Draw(nu::Renderer& renderer)
 {
-
+	//renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/background.png", Engine::Get().GetRenderer()), 500, 500);
 	
 	m_scene->Draw(renderer);
 
@@ -150,8 +150,9 @@ void SpaceGame::SpawnPlayer()
 	
 	PlayerDesc playerDesc;
 	playerDesc.name = "Player";
-	playerDesc.model = Assets::playerModel;
-	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 15.0f };
+	//playerDesc.model = Assets::playerModel;
+	playerDesc.texture = Resources().Get<Texture>("textures/Player.png", Engine::Get().GetRenderer());
+	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 0.2f };
 	playerDesc.velocity = Vector2{ 0.0f, 0.0f };
 	playerDesc.damping = 3.0f;
 	playerDesc.speed = 2500.0f;
@@ -179,8 +180,9 @@ void SpaceGame::SpawnEnemy()
 	if (enemyIndex == 0) {
 		EnemyDesc enemyDesc;
 		enemyDesc.name = "Enemy";
-		enemyDesc.model = Assets::enemyModel;
-		enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 15.0f};
+		//enemyDesc.model = Assets::enemyModel;
+		enemyDesc.texture = Resources().Get<Texture>("textures/Enemy1.png", Engine::Get().GetRenderer());
+		enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 0.15f};
 		enemyDesc.velocity = Vector2{ 0.0f, 0.0f };
 		enemyDesc.damping = 3.0f;
 		enemyDesc.speed = 600.0f;
@@ -190,9 +192,10 @@ void SpaceGame::SpawnEnemy()
 	else if (enemyIndex == 1) {
 		EnemyDesc enemyDesc2;
 		enemyDesc2.name = "EnemyBoss";
-		enemyDesc2.model = Assets::enemyModel2;
+		//enemyDesc2.model = Assets::enemyModel2;
+		enemyDesc2.texture = Resources().Get<Texture>("textures/EnemyBoss.png", Engine::Get().GetRenderer());
 		enemyDesc2.health = 7.0f;
-		enemyDesc2.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 30.0f };
+		enemyDesc2.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 0.30f };
 		enemyDesc2.velocity = Vector2{ 0.0f, 0.0f };
 		enemyDesc2.damping = 3.0f;
 		enemyDesc2.speed = 700.0f;
@@ -207,8 +210,9 @@ void SpaceGame::SpawnSpeedPickup()
 
 	EnemyDesc pickupDesc;
 	pickupDesc.name = "Pickup";
-	pickupDesc.model = Assets::pickupModel;
-	pickupDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 5.0f };
+	//pickupDesc.model = Assets::pickupModel;
+	pickupDesc.texture = Resources().Get<Texture>("textures/The_Rock_Guy.png", Engine::Get().GetRenderer());
+	pickupDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 0.15f };
 	pickupDesc.velocity = Vector2{ 0.0f, 0.0f };
 	pickupDesc.damping = 3.0f;
 	pickupDesc.speed = 1200.0f;
