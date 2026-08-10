@@ -5,6 +5,7 @@
 #include "MathUtils.h"
 #include "Text.h"
 #include "Texture.h"
+#include "Texture.h"
 
 //Systems
 #include "Renderer.h"

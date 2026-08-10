@@ -2,6 +2,9 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Renderer.h"
+#include "ResourceManager.h"
+#include "Texture.h"
+
 
 #include <vector>
 
@@ -22,7 +25,7 @@ namespace nu
 	public:
 		ParticleSystem() = default;
 
-		bool Initialize(size_t poolSize = 1000);
+		bool Initialize(Renderer& renderer, size_t poolSize = 1000);
 		void Shutdown();
 
 		void Update(float dt);
@@ -36,6 +39,7 @@ namespace nu
 	private:
 		// store particles in particle pool
 		std::vector<Particle> m_particles;
+		res_t<Texture> m_texture;
 	};
 
 }

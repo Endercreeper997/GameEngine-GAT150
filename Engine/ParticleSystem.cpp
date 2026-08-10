@@ -4,10 +4,11 @@
 
 namespace nu
 {
-	bool ParticleSystem::Initialize(size_t size)
+	bool ParticleSystem::Initialize(Renderer& renderer, size_t size)
 	{
 		// reserve # particles in container
 		m_particles.resize(size);
+		m_texture = Resources().Get<Texture>("textures/projectile02.png", renderer);
 
 		return true;
 	}
@@ -50,10 +51,9 @@ namespace nu
 			if (particle.active)
 			{
 				// set particle color and draw point at current position
-				// TODO: set color with particle color
-				// TODO: draw point with particle position
 				renderer.SetColorFloat(particle.color.r, particle.color.g, particle.color.b, 1);
-				renderer.DrawPoint(particle.position.x, particle.position.y);
+				//renderer.DrawPoint(particle.position.x, particle.position.y);
+				renderer.DrawTexture(*m_texture, particle.position.x, particle.position.y, 0.0f, 1.0f);
 			}
 		}
 	}

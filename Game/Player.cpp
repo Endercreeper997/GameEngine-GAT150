@@ -62,9 +62,9 @@ void Player::Update(float dt)
         BulletDesc desc;
         desc.name = "Bullet";
         desc.tag = "PlayerBullet";
-        desc.model = Assets::bulletModel;
+        desc.texture = nu::Resources().Get<nu::Texture>("textures/missile.png", nu::Engine::Get().GetRenderer());
         desc.transform = m_transform;
-        desc.transform.scale = 3.0f;
+        desc.transform.scale = 0.8f;
         desc.damping = 3.0f;
         desc.speed = 400.0f;
         desc.lifespan = 1.0f;
