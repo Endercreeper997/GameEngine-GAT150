@@ -13,6 +13,7 @@
 #include <map>
 #include <memory>
 #include <random>
+#include <fstream>
 
 //Can use this to not have to type the namespace (like nu or std) every time. 
 using namespace nu;
@@ -22,61 +23,112 @@ int main()
 {
 
 
-    //File Testing
-    // get current working directory
-    std::cout << "Directory Operations:\n";
-    std::cout << "Working directory: " << nu::GetWorkingDirectory() << "\n";
-
-    // set working directory (current working directory + "Assets")
-    std::cout << "Setting directory to 'Assets'...\n";
-    nu::SetWorkingDirectory("Assets");
-    std::cout << "New directory: " << nu::GetWorkingDirectory() << "\n\n";
-
-    // get filenames in the working directory
-    std::cout << "Files in Directory:\n";
-    auto filenames = nu::GetFilesInDirectory(nu::GetWorkingDirectory());
-    for (const auto& filename : filenames)
-    {
-        std::cout << filename << "\n";
-    }
-    std::cout << "\n";
-
-    // get filename info
-    if (!filenames.empty())
-    {
-        // get filename
-        std::string str = nu::GetFilename(filenames[0]);
-        std::cout << "Filename: " << str << "\n";
-
-        // get extension
-        str = nu::GetFileExtension(filenames[0]);
-        std::cout << "Extension: " << str << "\n";
-
-        // get filename no extension
-        str = nu::GetFilenameNoExtension(filenames[0]);
-        std::cout << "Filename No Extension: " << str << "\n\n";
-    }
-
-    // read and display text file
-    std::cout << "Text File Reading:\n";
-    std::string str;
-    if (nu::ReadTextFile("test.txt", str))
-    {
-        std::cout << str << "\n";
-    }
-
-    // write to text file
-    std::cout << "Text File Writing:\n";
-    nu::WriteTextFile("test.txt\n", "Hello, World!\n", true);
-    if (nu::ReadTextFile("test.txt", str))
-    {
-        std::cout << str << "\n";
-    }
-    
 
 
     //INITIALIZATION
     SetWorkingDirectory("assets");
+    {
+
+        //read file (input file)
+        std::ifstream file("data/text.txt");
+        if (file.is_open()) 
+        {
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "couldnt load de ting: data/text.txt\n" << std::endl;
+
+        }
+        file.close();
+    }
+
+    {
+        //write file (output file)
+        std::ofstream file("data/text.txt", std::ios::app);
+        if (file.is_open())
+        {
+            file << "hajve a gooud dayy. \n";
+        }
+    }
+
+    {
+        // read / write (input / output file)
+        std::fstream file("data/text.txt", std::ios::in | std::ios::out | std::ios::app);
+        if (file.is_open())
+        {
+            //input
+            file << "add de line. \n";
+            file.seekg(0);
+            //output
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+    }
+
+    {
+        std::string name;
+        int score;
+        bool isAlive;
+
+        bool save = true;
+        if (save)
+        {
+            name = "Mr Cheese";
+            score = 1234;
+            isAlive = true;
+
+            //save game data
+            std::fstream file("data/game.txt", std::ios::in | std::ios::out | std::ios::app);
+            if (file.is_open())
+            {
+                file << name << "\n";
+                file << score << "\n";
+                file << isAlive << "\n";
+
+            }
+        }
+
+        // load game data
+        bool load = true;
+        if (load)
+        {
+            // read file (input file)
+            std::ifstream file("data/game.txt");
+            if (file.is_open())
+            {
+                std::getline(file, name);
+
+                std::string str;
+                std::getline(file, str);
+
+                score = std::stoi(str);
+                //file >> score;
+                file >> std::boolalpha >> isAlive;
+
+            }
+        }
+
+        //display game data
+        std::cout << name << std::endl;
+        std::cout << score << std::endl;
+        std::cout << isAlive << std::endl;
+    }
+
+    return 0;
+
+
+
+
+
+
     Engine::Get().Initialize();
   
 
@@ -131,8 +183,6 @@ int main()
         Engine::Get().GetRenderer().SetColorFloat(0.0f, 0.0f, 0.0f);
         Engine::Get().GetRenderer().Clear();
 
-        //draw texture
-        Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/Player.png", Engine::Get().GetRenderer()), 30, 30, 0.0f, 1.0f);
 
         game.Draw(Engine::Get().GetRenderer());
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
