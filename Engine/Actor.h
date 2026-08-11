@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "Resource.h"
 #include "Texture.h"
+#include "Object.h"
 
 #include <string>
 #include <memory>
@@ -26,7 +27,7 @@ namespace nu
 
 
 
-    class Actor
+    class Actor : public Object
     {
     public:
         Actor() = default;
