@@ -106,6 +106,13 @@ void Player::OnCollision(Actor* other)
     }
 }
 
+void Player::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+}
+
 
 
 

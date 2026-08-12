@@ -23,6 +23,11 @@ public:
 	void Update(float dt) override;	
 	//void Draw(const nu::Renderer& renderer) const override;
 	void OnCollision(Actor* other);
+
+	float GetSpeed() const { return m_speed; }
+
+	void Read(const nu::json::value_t& value) override;
+
 	
 
 
