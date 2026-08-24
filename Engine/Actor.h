@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Object.h"
 #include "Json.h"
+#include "Component.h"
 
 #include <string>
 #include <memory>
@@ -37,10 +38,13 @@ namespace nu
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
             m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan },
-            m_model{ actorDesc.model },
-            m_texture{ actorDesc.texture }
+            m_lifespan{ actorDesc.lifespan }
+           
         {};
+
+        Actor(const Actor& other);
+
+        CLASS_PROTOTYPE(Actor)
 
         Actor(const Transform& transform) : m_transform{ transform } {}
         
@@ -50,7 +54,7 @@ namespace nu
         virtual void OnCollision(Actor* other) {}
 
         const Transform& GetTransform() const { return m_transform; }
-        void SetPosition(Vector2& position) { m_transform.position = position; }
+        void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
 
@@ -64,12 +68,14 @@ namespace nu
         Scene* GetScene() { return m_scene; }
 
         float GetRadius() const;
-        void SetModel(std::shared_ptr<Model> model) { m_model = model; }
+        //void SetModel(std::shared_ptr<Model> model) { m_model = model; }
 
         void SetDestroyed(bool destroy = true) { m_destroyed = true; }
         bool GetDestroyed() const { return m_destroyed; }
 
         virtual void Read(const json::value_t& value) override;
+
+        void AddComponent(std::unique_ptr<Component> component);
 
         friend Scene;
 
@@ -83,9 +89,7 @@ namespace nu
         float m_lifespan{ 0 };
         bool m_destroyed = { false };
 
-        res_t<Model> m_model;
-        res_t<Texture> m_texture;
-
+        std::vector<std::unique_ptr<Component>> m_components;
 
         Scene* m_scene{ nullptr };
         

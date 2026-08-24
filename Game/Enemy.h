@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Json.h"
 
 
 
@@ -18,10 +19,14 @@ public:
 		m_speed{ enemyDesc.speed },
 		m_health{ enemyDesc.health }
 	{}
+
+	CLASS_PROTOTYPE(Enemy)
+
 	
 
 	void Update(float dt) override;
 	void OnCollision(Actor* other) override;
+	void Read(const nu::json::value_t& value);
 
 
 private:

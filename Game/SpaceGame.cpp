@@ -16,6 +16,24 @@ bool SpaceGame::Initialize()
 
 	m_scene = new Scene();
 	m_scene->SetGame(this);
+	m_scene->Load("data/scene.json");
+
+	json::document_t document;
+	if (json::Load("data/scene.json", document))
+	{
+		std::string type;
+		JSON_READ(document, type);
+
+		auto actor = Factory::Instance().Create<Actor>(type);
+
+		actor->Read(document);
+		std::cout << actor->GetName() << std::endl;
+		std::cout << actor->GetTag() << std::endl;
+		std::cout << actor->GetTransform().rotation << std::endl;
+
+		Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
+		//m_scene->AddActor(std::move(actor));
+	}
 
 	m_titleText = new Text(Resources().GetWithID<Font>("Game Font", "fonts/BreatheFireIii-PKLOB.ttf", 64));
 	m_titleText->Create(Engine::Get().GetRenderer(), "Super Space Game 2", Color{ 1, 0, 1 });
@@ -147,18 +165,9 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnPlayer()
 {
-	
-	PlayerDesc playerDesc;
-	playerDesc.name = "Player";
-	//playerDesc.model = Assets::playerModel;
-	playerDesc.texture = Resources().Get<Texture>("textures/Player.png", Engine::Get().GetRenderer());
-	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f }, 0.0f, 0.2f };
-	playerDesc.velocity = Vector2{ 0.0f, 0.0f };
-	playerDesc.damping = 3.0f;
-	playerDesc.speed = 2500.0f;
+	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
+	m_scene->AddActor(std::move(actor));
 
-	std::unique_ptr<Player> player = std::make_unique<Player>( playerDesc );
-	m_scene->AddActor(std::move(player));
 }
 
 void SpaceGame::SpawnEnemy()
@@ -178,18 +187,16 @@ void SpaceGame::SpawnEnemy()
 	
 
 	if (enemyIndex == 0) {
-		EnemyDesc enemyDesc;
-		enemyDesc.name = "Enemy";
-		//enemyDesc.model = Assets::enemyModel;
-		enemyDesc.texture = Resources().Get<Texture>("textures/Enemy1.png", Engine::Get().GetRenderer());
-		enemyDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 0.15f};
-		enemyDesc.velocity = Vector2{ 0.0f, 0.0f };
-		enemyDesc.damping = 3.0f;
-		enemyDesc.speed = 600.0f;
 
-		m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
+		auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
+		actor->SetPosition({ nu::RandomFloat(1000.0f), nu::RandomFloat(800.f) });
+		m_scene->AddActor(std::move(actor));
 	}
 	else if (enemyIndex == 1) {
+		auto actor = Factory::Instance().Create<Actor>("BossPrototype");
+		actor->SetPosition({ nu::RandomFloat(1000.0f), nu::RandomFloat(800.f) });
+		m_scene->AddActor(std::move(actor));
+		/*
 		EnemyDesc enemyDesc2;
 		enemyDesc2.name = "EnemyBoss";
 		//enemyDesc2.model = Assets::enemyModel2;
@@ -201,6 +208,8 @@ void SpaceGame::SpawnEnemy()
 		enemyDesc2.speed = 700.0f;
 
 		m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc2)));
+		*/
+
 	}
 }
 

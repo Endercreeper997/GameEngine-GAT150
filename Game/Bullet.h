@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Json.h"
 
 struct BulletDesc : public nu::ActorDesc
 {
@@ -16,9 +17,13 @@ public:
 	{
 	}
 	
+	CLASS_PROTOTYPE(Bullet)
+
 	
 
 	void Update(float dt) override;
+
+	void Read(const nu::json::value_t& value);
 
 
 

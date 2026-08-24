@@ -6,6 +6,8 @@
 #include "Engine.h"
 #include "SpaceGame.h"
 
+FACTORY_REGISTER(Player)
+
 void Player::Update(float dt)
 {
     //check for a boost
@@ -93,7 +95,7 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
-    if (other->GetName() == "Enemy" || other->GetName() == "EnemyBoss")
+    if (other->GetTag() == "Enemy" || other->GetName() == "EnemyBoss")
     {
         SetDestroyed();
 

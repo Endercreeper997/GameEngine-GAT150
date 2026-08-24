@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "SpaceGame.h"
 
+FACTORY_REGISTER(Enemy)
+
 void Enemy::Update(float dt)
 {
     Player* player = m_scene->GetActorByName<Player>("Player");
@@ -27,7 +29,7 @@ void Enemy::Update(float dt)
 
 void Enemy::OnCollision(Actor* other)
 {
-	if (this->GetName() == "Enemy" || this->GetName() == "EnemyBoss") {
+	if (this->GetTag() == "Enemy" || this->GetName() == "EnemyBoss") {
 		if (other->GetTag() == "PlayerBullet")
 		{
 			other->SetDestroyed();
@@ -60,3 +62,11 @@ void Enemy::OnCollision(Actor* other)
 }
 
 
+void Enemy::Read(const nu::json::value_t& value)
+{
+	Actor::Read(value);
+
+	JSON_READ_NAME(value, "speed", m_speed);
+	//JSON_READ_NAME(value, "points", m_points);
+	JSON_READ_NAME(value, "health", m_health);
+}

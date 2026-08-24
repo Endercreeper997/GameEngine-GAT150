@@ -19,6 +19,8 @@ public:
 	{
 	}
 	
+	CLASS_PROTOTYPE(Player)
+
 
 	void Update(float dt) override;	
 	//void Draw(const nu::Renderer& renderer) const override;

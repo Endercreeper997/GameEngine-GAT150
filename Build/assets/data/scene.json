@@ -1,11 +1,74 @@
 {
-  "name": "Gabe Pippin",
-  "tag": "Player",
-  "active": true,
-  "speed": 750,
-  "transform": {
-    "position": [ 2.0, 4.0 ],
-    "rotation": 45,
-    "scale": 2 
-  }
+  "actors": [
+    {
+      "type": "Player",
+      "prototype":  true,
+      "name": "PlayerPrototype",
+      "tag": "Player",
+      "active": true,
+      "speed": 2500,
+      "damping": 3,
+      //"texture": "textures/Player.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRenderComponent",
+          "texture":  "textures/Player.png"
+
+        }
+      ]
+    },
+
+
+    {
+      "type": "Enemy",
+      "prototype": true,
+      "name": "EnemyPrototype",
+      "tag": "Enemy",
+      "active": true,
+      "speed": 2500,
+      "health": 3,
+      "damping": 3,
+      //"texture": "textures/Player.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRenderComponent",
+          "texture": "textures/Enemy1.png"
+
+        }
+      ]
+    },
+
+
+    {
+      "type": "Bullet",
+      "prototype": true,
+      "name": "BulletPrototype",
+      "tag": "Bullet",
+      "active": true,
+      "speed": 2500,
+      "damping": 3,
+      //"texture": "textures/Player.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRenderComponent",
+          "texture": "textures/missile.png"
+        }
+      ]
+    }
+  ]
 }

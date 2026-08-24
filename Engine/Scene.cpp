@@ -2,6 +2,8 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
+#include "Json.h"
+#include "Factory.h"
 
 namespace nu
 {
@@ -14,6 +16,64 @@ namespace nu
 	void Scene::RemoveAllActors()
 	{
 		m_actors.clear();
+	}
+
+	bool Scene::Load(const std::string& sceneName)
+	{
+		json::document_t document;
+		if (json::Load("data/scene.json", document))
+		{
+			if (JSON_HAS_NAME(document, "actors"))
+			{
+				for (auto& actorValue : JSON_GET_NAME(document, "actors").GetArray())
+				{
+					// get actor type
+					std::string typeName;
+					JSON_READ_NAME(actorValue, "type", typeName);
+
+					// create actor of type
+					auto actor = Factory::Instance().Create<Actor>(typeName);
+
+					// read actor json
+					actor->Read(actorValue);
+
+					// check if prototype
+					bool prototype = false;
+					JSON_READ(actorValue, prototype);
+
+					
+
+					if (prototype) 
+					{
+						// if prototype, add prototype to factory registy
+						std::string name;
+						JSON_READ(actorValue, name);
+						Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+					}
+					else 
+					{
+						// not prototype, add actor to scene
+						AddActor(std::move(actor));
+					}
+				}
+			}
+
+			/*std::string type;
+			JSON_READ(document, type);
+
+			auto actor = Factory::Instance().Create<Actor>(type);
+
+			actor->Read(document);
+			std::cout << actor->GetName() << std::endl;
+			std::cout << actor->GetTag() << std::endl;
+			std::cout << actor->GetTransform().rotation << std::endl;*/
+			
+
+			//Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
+			//m_scene->AddActor(std::move(actor));
+		}
+
+		return false;
 	}
 
 	void Scene::Update(float dt)
