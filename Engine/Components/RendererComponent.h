@@ -8,7 +8,5 @@ namespace nu
 	public:
 		virtual void Draw(const class Renderer& renderer) = 0;
 	};
-
-	//RendererComponent component;
 }
 

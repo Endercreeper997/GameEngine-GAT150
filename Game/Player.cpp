@@ -61,24 +61,32 @@ void Player::Update(float dt)
     if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE))
     {
         nu::Engine::Get().GetAudio().PlaySound("duck");
-        BulletDesc desc;
-        desc.name = "Bullet";
-        desc.tag = "PlayerBullet";
-        desc.texture = nu::Resources().Get<nu::Texture>("textures/missile.png", nu::Engine::Get().GetRenderer());
-        desc.transform = m_transform;
-        desc.transform.scale = 0.8f;
-        desc.damping = 3.0f;
-        desc.speed = 400.0f;
-        desc.lifespan = 1.0f;
 
-        //create bullet burst
-        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+        auto bullet = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+        bullet->SetTransform(m_transform);
+        bullet->SetScale(2.0f);
+        bullet->SetTag("PlayerBullet");
 
-        desc.transform.rotation -= 20.0f;
-        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+        m_scene->AddActor(std::move(bullet));
 
-        desc.transform.rotation += 20.0f;
-        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+        //BulletDesc desc;
+        //desc.name = "Bullet";
+        //desc.tag = "PlayerBullet";
+        //desc.texture = nu::Resources().Get<nu::Texture>("textures/missile.png", nu::Engine::Get().GetRenderer());
+        //desc.transform = m_transform;
+        //desc.transform.scale = 0.8f;
+        //desc.damping = 3.0f;
+        //desc.speed = 400.0f;
+        //desc.lifespan = 1.0f;
+
+        ////create bullet burst
+        //m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+
+        //desc.transform.rotation -= 20.0f;
+        //m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+
+        //desc.transform.rotation += 20.0f;
+        //m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
     }
 
     //bullet time

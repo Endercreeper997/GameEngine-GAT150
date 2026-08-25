@@ -19,21 +19,21 @@ bool SpaceGame::Initialize()
 	m_scene->Load("data/scene.json");
 
 	json::document_t document;
-	if (json::Load("data/scene.json", document))
-	{
-		std::string type;
-		JSON_READ(document, type);
+	//if (json::Load("data/scene.json", document))
+	//{
+	//	std::string type;
+	//	JSON_READ(document, type);
 
-		auto actor = Factory::Instance().Create<Actor>(type);
+	//	auto actor = Factory::Instance().Create<Actor>(type);
 
-		actor->Read(document);
-		std::cout << actor->GetName() << std::endl;
-		std::cout << actor->GetTag() << std::endl;
-		std::cout << actor->GetTransform().rotation << std::endl;
+	//	actor->Read(document);
+	//	std::cout << actor->GetName() << std::endl;
+	//	std::cout << actor->GetTag() << std::endl;
+	//	std::cout << actor->GetTransform().rotation << std::endl;
 
-		Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
-		//m_scene->AddActor(std::move(actor));
-	}
+	//	Factory::Instance().RegisterPrototype<Actor>("PlayerPrototype", std::move(actor));
+	//	//m_scene->AddActor(std::move(actor));
+	//}
 
 	m_titleText = new Text(Resources().GetWithID<Font>("Game Font", "fonts/BreatheFireIii-PKLOB.ttf", 64));
 	m_titleText->Create(Engine::Get().GetRenderer(), "Super Space Game 2", Color{ 1, 0, 1 });

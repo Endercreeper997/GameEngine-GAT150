@@ -2,13 +2,12 @@
   "actors": [
     {
       "type": "Player",
-      "prototype":  true,
+      "prototype": true,
       "name": "PlayerPrototype",
       "tag": "Player",
       "active": true,
       "speed": 2500,
       "damping": 3,
-      //"texture": "textures/Player.png",
       "transform": {
         "position": [ 640, 512 ],
         "rotation": -90,
@@ -16,24 +15,24 @@
       },
       "components": [
         {
-          "type": "SpriteRenderComponent",
-          "texture":  "textures/Player.png"
-
+          "type": "SpriteRendererComponent",
+          "texture": "textures/Player.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64
         }
       ]
     },
-
-
     {
       "type": "Enemy",
       "prototype": true,
       "name": "EnemyPrototype",
       "tag": "Enemy",
       "active": true,
-      "speed": 2500,
+      "speed": 2000,
       "health": 3,
       "damping": 3,
-      //"texture": "textures/Player.png",
       "transform": {
         "position": [ 640, 512 ],
         "rotation": -90,
@@ -41,23 +40,49 @@
       },
       "components": [
         {
-          "type": "SpriteRenderComponent",
+          "type": "SpriteRendererComponent",
           "texture": "textures/Enemy1.png"
-
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64
         }
       ]
     },
-
-
+    {
+      "type": "Enemy",
+      "prototype": true,
+      "name": "BossPrototype",
+      "tag": "Enemy",
+      "active": true,
+      "speed": 2000,
+      "health": 6,
+      "damping": 3,
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/EnemyBoss.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64
+        }
+      ]
+    },
     {
       "type": "Bullet",
       "prototype": true,
       "name": "BulletPrototype",
       "tag": "Bullet",
       "active": true,
+      "lifespan": 1.0,
       "speed": 2500,
       "damping": 3,
-      //"texture": "textures/Player.png",
       "transform": {
         "position": [ 640, 512 ],
         "rotation": -90,
@@ -65,8 +90,12 @@
       },
       "components": [
         {
-          "type": "SpriteRenderComponent",
+          "type": "SpriteRendererComponent",
           "texture": "textures/missile.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24
         }
       ]
     }

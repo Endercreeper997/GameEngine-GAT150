@@ -109,6 +109,8 @@ namespace nu {
             return;
         }
 
+        std::cout << "Object Prototype Registered: " << name << std::endl;
+        
         m_registry[lowerName] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
     }
 

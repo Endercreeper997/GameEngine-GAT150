@@ -19,7 +19,7 @@ namespace nu
 		void SetColorFloat(float r, float g, float b, float a = 255) const;
 
 		void DrawPoint(float x, float y) const;
-		void DrawLine(int x1, int y1, int x2, int y2) const;
+		void DrawLine(float x1, float y1, float x2, float y2) const;
 		void DrawFillRect(float x, float y, float w, float h) const;
 		void DrawRect(float x, float y, float w, float h) const;
 

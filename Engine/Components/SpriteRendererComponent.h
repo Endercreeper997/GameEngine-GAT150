@@ -3,7 +3,6 @@
 #include "Resource.h"
 #include "Texture.h"
 
-
 namespace nu
 {
 	class SpriteRendererComponent : public RendererComponent

@@ -88,7 +88,7 @@ namespace nu
     }
 
     //first 2 paramters are first point, next 2 are second point.
-    void Renderer::DrawLine(int x1, int y1, int x2, int y2) const
+    void Renderer::DrawLine(float x1, float y1, float x2, float y2) const
     {
         SDL_RenderLine(m_renderer, x1, y1, x2, y2);
         return;
