@@ -1,10 +1,10 @@
 #pragma once
 #include "pch.h"
-#include "Renderer.h"
-#include "Mesh.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Mesh.h"
 #include "Actor.h"
-#include "MathUtils.h"
-#include "Texture.h"
+#include "Math/MathUtils.h"
+#include "Renderer/Texture.h"
 #include "Engine.h"
 #include "Components/RendererComponent.h"
 

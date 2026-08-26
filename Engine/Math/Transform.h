@@ -1,6 +1,6 @@
 #pragma once
-#include "Vector2.h"
-#include "Json.h"
+#include "Math/Vector2.h"
+#include "Serialization/Json.h"
 
 namespace nu
 {

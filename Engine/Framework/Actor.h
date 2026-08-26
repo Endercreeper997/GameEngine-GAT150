@@ -1,10 +1,10 @@
 #pragma once
-#include "Transform.h"
-#include "Model.h"
-#include "Resource.h"
-#include "Texture.h"
-#include "Object.h"
-#include "Json.h"
+#include "Math/Transform.h"
+#include "Renderer/Model.h"
+#include "Resources/Resource.h"
+#include "Renderer/Texture.h"
+#include "Framework/Object.h"
+#include "Serialization/Json.h"
 #include "Components/Component.h"
 
 #include <string>

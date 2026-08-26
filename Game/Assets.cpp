@@ -1,5 +1,5 @@
 #include "Assets.h"
-#include "Random.h"
+#include "Core/Random.h"
 using namespace nu;
 
 namespace Assets

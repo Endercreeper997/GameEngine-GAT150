@@ -1,6 +1,6 @@
 #pragma once
-#include "Actor.h"
-#include "Json.h"
+#include "Framework/Actor.h"
+#include "Serialization/Json.h"
 
 struct BulletDesc : public nu::ActorDesc
 {

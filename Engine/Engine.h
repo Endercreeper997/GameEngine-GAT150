@@ -1,27 +1,27 @@
 #pragma once
 
-#include "Vector2.h"
-#include "Random.h"
-#include "MathUtils.h"
-#include "StringUtils.h"
-#include "Text.h"
-#include "Texture.h"
-#include "Json.h"
+#include "Math/Vector2.h"
+#include "Core/Random.h"
+#include "Math/MathUtils.h"
+#include "Core/StringUtils.h"
+#include "Renderer/Text.h"
+#include "Renderer/Texture.h"
+#include "Serialization/Json.h"
 
-#include "Factory.h"
-#include "Physics.h"
+#include "Core/Factory.h"
+#include "Physics/Physics.h"
 
 //Systems
-#include "Renderer.h"
-#include "Input.h"
-#include "GameTime.h"
-#include "Actor.h"
-#include "Scene.h"
-#include "Game.h"
-#include "ParticleSystem.h"
+#include "Renderer/Renderer.h"
+#include "Input/Input.h"
+#include "Core/GameTime.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Framework/Game.h"
+#include "Renderer/ParticleSystem.h"
 #include "fmod.hpp"
-#include "File.h"
-#include "Audio.h"
+#include "Core/File.h"
+#include "Audio/Audio.h"
 
 
 

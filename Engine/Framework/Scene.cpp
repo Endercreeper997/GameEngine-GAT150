@@ -2,8 +2,8 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
-#include "Json.h"
-#include "Factory.h"
+#include "Serialization/Json.h"
+#include "Core/Factory.h"
 #include "Components/ColliderComponent.h"
 
 namespace nu
