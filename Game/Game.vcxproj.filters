@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{b01e7e1d-ab82-442d-962e-bc885cd6dad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scenes">
+      <UniqueIdentifier>{5f2eb0ec-6f14-4841-a394-ca3d86bc5c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Animations">
+      <UniqueIdentifier>{02ccc407-9876-46cc-886c-29b8b1afe5f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -50,5 +59,13 @@
     <ClInclude Include="SpaceGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Build\assets\data\scene.json">
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\assets\animations\bat_idle.json">
+      <Filter>Assets\Animations</Filter>
+    </None>
   </ItemGroup>
 </Project>

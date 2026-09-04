@@ -1,6 +1,26 @@
 {
   "actors": [
     {
+      "type": "Actor",
+      "prototype": false,
+      "name": "Bat",
+      "tag": "Enemy",
+      "active": true,
+      "transform": {
+        "position": [ 200, 200 ],
+        "rotation": 0,
+        "scale": 1.5
+      },
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "texture_frames": "animations/bat_idle.json",
+          "frames_per_second": 10,
+          "loop": true
+        }
+      ]
+    },
+    {
       "type": "Player",
       "prototype": true,
       "name": "PlayerPrototype",

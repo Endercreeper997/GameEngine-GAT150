@@ -145,6 +145,21 @@
     <ClInclude Include="Serialization\Json.h">
       <Filter>Serialization</Filter>
     </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\TextureFrames.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PhysicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RigidBodyPhysicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -204,6 +219,18 @@
     </ClCompile>
     <ClCompile Include="Serialization\Json.cpp">
       <Filter>Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\TextureFrames.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RigidBodyPhysicsComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
