@@ -5,6 +5,7 @@
 #include "Renderer/Renderer.h"
 #include "Engine.h"
 #include "SpaceGame.h"
+#include "Components/PhysicsComponent.h"
 
 FACTORY_REGISTER(Player)
 
@@ -30,15 +31,27 @@ void Player::Update(float dt)
     if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_S)) thrust = -m_speed;
 
     float rotate = 0.0f;
-    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -180.0f;
-    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = 180.f;
+    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -40.0f;
+    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = 40.f;
 
-    SetRotation(m_transform.rotation + rotate * dt);
+    nu::PhysicsComponent* physicsComponent = GetComponent<nu::PhysicsComponent>();
+    if (physicsComponent)
+    {
+        nu::Vector2 forward{ 1, 0 };
+        nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
+        
+        physicsComponent->ApplyForce(velocity);
+        physicsComponent->ApplyTorque(rotate);
+
+        nu::Vector2 position = physicsComponent->GetPosition();
+        position.x = nu::Wrap(0.0f, 1280.0f, position.x);
+        position.y = nu::Wrap(0.0f, 1024.0f, position.y);
+        physicsComponent->SetPosition(position);
+    }
 
 
-    nu::Vector2 forward{ 1,0 };
-    nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
-    AddVelocity(velocity * dt);
+
+    //AddVelocity(velocity * dt);
 
     //particle system
     if (thrust)
@@ -103,6 +116,7 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
+    return;
     if (other->GetTag() == "Enemy" || other->GetName() == "EnemyBoss")
     {
         SetDestroyed();

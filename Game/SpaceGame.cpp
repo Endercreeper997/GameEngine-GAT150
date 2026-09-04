@@ -222,8 +222,7 @@ void SpaceGame::SpawnSpeedPickup()
 	//pickupDesc.model = Assets::pickupModel;
 	pickupDesc.texture = Resources().Get<Texture>("textures/projectile02.png", Engine::Get().GetRenderer());
 	pickupDesc.transform = Transform{ Vector2{ RandomFloat(0, 1000.0f), RandomFloat(0, 800.f) }, 0.0f, 1.4f };
-	pickupDesc.velocity = Vector2{ 0.0f, 0.0f };
-	pickupDesc.damping = 3.0f;
+	
 	pickupDesc.speed = 1200.0f;
 
 	m_scene->AddActor(std::move(std::make_unique<Enemy>(pickupDesc)));

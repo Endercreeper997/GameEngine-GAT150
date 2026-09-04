@@ -3,20 +3,19 @@
     {
       "type": "Actor",
       "prototype": false,
-      "name": "Bat",
-      "tag": "Enemy",
+      "name": "Tilemap",
+      "tag": "Ground",
       "active": true,
+      "persistent":  true,
       "transform": {
-        "position": [ 200, 200 ],
+        "position": [ 0, 200 ],
         "rotation": 0,
-        "scale": 1.5
+        "scale": 3
       },
       "components": [
         {
-          "type": "SpriteAnimationRendererComponent",
-          "texture_frames": "animations/bat_idle.json",
-          "frames_per_second": 10,
-          "loop": true
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "tilemap/world.json"
         }
       ]
     },
@@ -39,6 +38,13 @@
           "texture": "textures/Player.png"
         },
         {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale":  0
+        },
+        {
           "type": "CircleColliderComponent",
           "radius": 64
         }
@@ -50,7 +56,7 @@
       "name": "EnemyPrototype",
       "tag": "Enemy",
       "active": true,
-      "speed": 2000,
+      "speed": 1000,
       "health": 3,
       "damping": 3,
       "transform": {
@@ -64,6 +70,13 @@
           "texture": "textures/Enemy1.png"
         },
         {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
+        },
+        {
           "type": "CircleColliderComponent",
           "radius": 64
         }
@@ -75,7 +88,7 @@
       "name": "BossPrototype",
       "tag": "Enemy",
       "active": true,
-      "speed": 2000,
+      "speed": 1000,
       "health": 6,
       "damping": 3,
       "transform": {
@@ -87,6 +100,13 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/EnemyBoss.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         },
         {
           "type": "CircleColliderComponent",
@@ -112,6 +132,14 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/missile.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0,
+          "is_sensor":  true
         },
         {
           "type": "CircleColliderComponent",
